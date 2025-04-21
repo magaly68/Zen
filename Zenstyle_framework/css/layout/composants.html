@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="framework.css">
+    <title>Composants</title>
+    <script>
+  // Accordéons
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      const isOpen = header.classList.contains('open');
+
+      document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('open');
+        h.nextElementSibling.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        header.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Onglets
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const tabGroup = button.closest('.tabs');
+      const target = button.dataset.tab;
+
+      tabGroup.querySelectorAll('.tab-button').forEach(btn =>
+        btn.classList.remove('active')
+      );
+      tabGroup.querySelectorAll('.tab-content').forEach(content =>
+        content.classList.remove('active')
+      );
+
+      button.classList.add('active');
+      tabGroup.querySelector(`.tab-content[data-tab="${target}"]`).classList.add('active');
+    });
+  });
+</script>      
+</head>
+<body>
+    <header class="container">
+        <nav>                
+                <a href="">Accueil</a>
+                <a href="#">Documentation</a>
+                <a href="#">Téléchargement</a>
+                <a href="#">Composants</a>
+                <a href="#">Thèmes</a>
+                <a href="#">Icônes</a>
+                <a href="#">Contact</a>                
+            </nav>
+    </header>
+    <main>
+        <!--messages d'alerte-->
+        <section id="alerts">
+            <h2>Alertes</h2>
+            <div class="alert alert-success">Succès : l’action a été effectuée !</div>
+            <div class="alert alert-info">Info : voici une information utile.</div>
+            <div class="alert alert-warning">Attention : vérifiez ce point.</div>
+            <div class="alert alert-error">Erreur : quelque chose s’est mal passé.</div>
+          </section>
+
+          <!--Badges-->
+          <section id="badges">
+            <h2>Badges</h2>
+            <span class="badge badge-primary">Nouveau</span>
+            <span class="badge badge-success">Validé</span>
+            <span class="badge badge-warning">En attente</span>
+            <span class="badge badge-error">Erreur</span>
+          </section>
+
+          <!--Cartes-->
+
+          <section id="cards">
+            <h2>Cartes</h2>
+            <div class="card">
+              <h3>Titre de la carte</h3>
+              <p>Contenu de la carte avec un texte simple.</p>
+              <a href="#" class="btn">En savoir plus</a>
+            </div>
+          </section>
+
+          <!--Modales-->
+          <section id="modals">
+            <h2>Modales</h2>
+            <button class="btn btn-primary" onclick="document.getElementById('modal').style.display='block'">Ouvrir la modale</button>
+          
+            <div class="modal" id="modal">
+              <div class="modal-content">
+                <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+                <h3>Modale</h3>
+                <p>Voici une modale fonctionnelle.</p>
+              </div>
+            </div>
+          </section>
+
+          <!--Accordéons-->
+
+          <section id="accordions">
+            <h2>Accordéons</h2>
+            <button class="accordion">Section 1</button>
+            <div class="panel">
+              <p>Contenu de la section 1.</p>
+            </div>
+          
+            <button class="accordion">Section 2</button>
+            <div class="panel">
+              <p>Contenu de la section 2.</p>
+            </div>
+          </section>
+
+          <!--Onglets-->
+
+          <section id="tabs">
+            <h2>Onglets</h2>
+            <div class="tabs">
+              <button class="tab-btn active" data-tab="tab1">Onglet 1</button>
+              <button class="tab-btn" data-tab="tab2">Onglet 2</button>
+            </div>
+            <div id="tab1" class="tab-content active">
+              <p>Contenu de l’onglet 1.</p>
+            </div>
+            <div id="tab2" class="tab-content">
+              <p>Contenu de l’onglet 2.</p>
+            </div>
+          </section>
+          
+
+
+
+
+          
+    </main>
+    <footer class="container">
+        <p>Mon framework css est un projet open source et est disponible sous la licence MIT. Vous pouvez l'utiliser gratuitement dans vos projets personnels et commerciaux.</p>
+            <a href="">Mentions légales</a>
+            <a href="">Politique de confidentialité</a>
+            <a href="">Gestion des cookies</a>
+        <p>&copy; 2023 Mon framework css. Tous droits réservés.</p>
+    </footer>  
+</body>
+</html>
+
